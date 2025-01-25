@@ -2,7 +2,7 @@ const planets = {
     earth: {
         name: "Земля",
         description: "Третя планета від Сонця, єдина відома планета, що підтримує життя.",
-        rotation: 23.9344, // Години
+        rotation: 23.9344, // Період обертання в годинах
         distance: "Відстань від Сонця: 149.6 млн км",
         diameter: "Діаметр: 12,742 км",
         moons: "Супутники: 1 (Місяць)"
@@ -10,7 +10,7 @@ const planets = {
     mercury: {
         name: "Меркурій",
         description: "Найближча до Сонця планета, має найкоротший рік.",
-        rotation: 1407.6, // Години
+        rotation: 1407.6, // Період обертання в годинах
         distance: "Відстань від Сонця: 57.9 млн км",
         diameter: "Діаметр: 4,880 км",
         moons: "Супутники: 0"
@@ -18,7 +18,7 @@ const planets = {
     venus: {
         name: "Венера",
         description: "Друга планета від Сонця, найгарячіша планета у Сонячній системі.",
-        rotation: 5832.5, // Години
+        rotation: 5832.5, // Період обертання в годинах
         distance: "Відстань від Сонця: 108.2 млн км",
         diameter: "Діаметр: 12,104 км",
         moons: "Супутники: 0"
@@ -26,7 +26,7 @@ const planets = {
     mars: {
         name: "Марс",
         description: "Червона планета, відома своїми величезними вулканами та каньйонами.",
-        rotation: 24.6229, // Години
+        rotation: 24.6229, // Період обертання в годинах
         distance: "Відстань від Сонця: 227.9 млн км",
         diameter: "Діаметр: 6,779 км",
         moons: "Супутники: 2 (Фобос і Деймос)"
@@ -34,7 +34,7 @@ const planets = {
     jupiter: {
         name: "Юпітер",
         description: "Найбільша планета Сонячної системи, газовий гігант.",
-        rotation: 9.9259, // Години
+        rotation: 9.9259, // Період обертання в годинах
         distance: "Відстань від Сонця: 778.5 млн км",
         diameter: "Діаметр: 139,820 км",
         moons: "Супутники: 79"
@@ -42,7 +42,7 @@ const planets = {
     saturn: {
         name: "Сатурн",
         description: "Відомий своїми кільцями, газовий гігант.",
-        rotation: 10.656, // Години
+        rotation: 10.656, // Період обертання в годинах
         distance: "Відстань від Сонця: 1.43 млрд км",
         diameter: "Діаметр: 116,460 км",
         moons: "Супутники: 83"
@@ -50,7 +50,7 @@ const planets = {
     uranus: {
         name: "Уран",
         description: "Льодяний гігант, обертається навколо Сонця на боці.",
-        rotation: 17.24, // Години
+        rotation: 17.24, // Період обертання в годинах
         distance: "Відстань від Сонця: 2.87 млрд км",
         diameter: "Діаметр: 50,724 км",
         moons: "Супутники: 27"
@@ -58,7 +58,7 @@ const planets = {
     neptune: {
         name: "Нептун",
         description: "Найвіддаленіша планета від Сонця, льодяний гігант.",
-        rotation: 16.11, // Години
+        rotation: 16.11, // Період обертання в годинах
         distance: "Відстань від Сонця: 4.5 млрд км",
         diameter: "Діаметр: 49,244 км",
         moons: "Супутники: 14"
@@ -96,13 +96,12 @@ function updateClock() {
     const planetRotation = currentPlanet.rotation;
 
     // Розрахунок часу для обраної планети
-    const planetTime = (now.getTime() * (earthRotation / planetRotation)) % (24 * 60 * 60 * 1000);
+    const planetTimeRatio = earthRotation / planetRotation;
+    const planetTime = new Date(now.getTime() * planetTimeRatio);
 
-    const planetDate = new Date(planetTime);
-
-    const hours = String(planetDate.getUTCHours()).padStart(2, '0');
-    const minutes = String(planetDate.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(planetDate.getUTCSeconds()).padStart(2, '0');
+    const hours = String(planetTime.getUTCHours()).padStart(2, '0');
+    const minutes = String(planetTime.getUTCMinutes()).padStart(2, '0');
+    const seconds = String(planetTime.getUTCSeconds()).padStart(2, '0');
 
     timeElement.textContent = `Час: ${hours}:${minutes}:${seconds}`;
 
