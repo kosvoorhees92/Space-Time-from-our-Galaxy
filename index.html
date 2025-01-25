@@ -3,18 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Space Time - Годинник Землі</title>
+    <title>Space Time - Сонячна система</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="container">
-        <h1>Годинник Землі</h1>
-        <div id="earth-info">
-            <p id="time"></p>
-            <p id="date"></p>
-            <p id="rotation-period"></p>
-            <p id="solar-day"></p>
-            <p id="facts"></p>
+        <h1>Сонячна система</h1>
+        <label for="planet-select">Оберіть планету:</label>
+        <select id="planet-select">
+            <option value="earth">Земля</option>
+            <option value="mercury">Меркурій</option>
+            <option value="venus">Венера</option>
+            <option value="mars">Марс</option>
+            <option value="jupiter">Юпітер</option>
+            <option value="saturn">Сатурн</option>
+            <option value="uranus">Уран</option>
+            <option value="neptune">Нептун</option>
+        </select>
+        <div id="planet-info">
+            <h2 id="planet-name"></h2>
+            <p id="planet-description"></p>
+            <p id="planet-rotation"></p>
+            <p id="planet-distance"></p>
+            <p id="planet-diameter"></p>
+            <p id="planet-moons"></p>
         </div>
     </div>
     <script src="script.js"></script>
