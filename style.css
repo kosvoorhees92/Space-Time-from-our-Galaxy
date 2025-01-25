@@ -18,10 +18,23 @@ h1 {
     margin-bottom: 20px;
 }
 
-#earth-info {
-    font-size: 1.5rem;
+label {
+    font-size: 1.2rem;
+    margin-right: 10px;
 }
 
-#time, #date, #rotation-period, #solar-day, #facts {
-    margin: 10px 0;
-} 
+select {
+    font-size: 1rem;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#planet-info {
+    margin-top: 20px;
+    font-size: 1.2rem;
+}
+
+#planet-name {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
