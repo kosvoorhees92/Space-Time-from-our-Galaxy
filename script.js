@@ -98,7 +98,7 @@ function updatePlanetInfo() {
 
 function updateSolarClock() {
     const now = new Date();
-    const hours = String(now.getHours()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0'); // Локальний час
     const minutes = String(now.getMinutes()).padStart(2, '0');
     const seconds = String(now.getSeconds()).padStart(2, '0');
     solarTimeElement.textContent = `Час: ${hours}:${minutes}:${seconds}`;
@@ -142,7 +142,12 @@ function updatePlanetClock() {
     planetTimeElement.textContent = `Час: ${hours}:${minutes}:${seconds}`;
 }
 
-confirmButton.addEventListener('click', updatePlanetInfo);
+// Додаємо обробник події для кнопки "Продовжити"
+confirmButton.addEventListener('click', () => {
+    updatePlanetInfo();
+    updatePlanetClock(); // Оновити планетарний годинник при виборі планети
+});
+
 setInterval(updateSolarClock, 1000);
 setInterval(updateSiderealClock, 1000);
 setInterval(updatePlanetClock, 1000);
