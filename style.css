@@ -44,12 +44,12 @@ select {
     background-color: #0056b3;
 }
 
-#planet-info {
+#planet-info, #clock {
     margin-top: 20px;
     font-size: 1.2rem;
 }
 
-#planet-name {
+#planet-name, #clock h2 {
     font-size: 2rem;
     margin-bottom: 10px;
 }
