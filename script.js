@@ -66,6 +66,7 @@ const planets = {
 };
 
 const planetSelect = document.getElementById('planet-select');
+const confirmButton = document.getElementById('confirm-button');
 const planetName = document.getElementById('planet-name');
 const planetDescription = document.getElementById('planet-description');
 const planetRotation = document.getElementById('planet-rotation');
@@ -85,5 +86,5 @@ function updatePlanetInfo() {
     planetMoons.textContent = planet.moons;
 }
 
-planetSelect.addEventListener('change', updatePlanetInfo);
+confirmButton.addEventListener('click', updatePlanetInfo);
 updatePlanetInfo(); // Оновити інформацію при завантаженні сторінки
