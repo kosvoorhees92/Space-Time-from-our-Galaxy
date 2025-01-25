@@ -44,12 +44,12 @@ select {
     background-color: #0056b3;
 }
 
-#planet-info, #clock {
+#planet-info, #solar-clock, #sidereal-clock, #planet-clock {
     margin-top: 20px;
     font-size: 1.2rem;
 }
 
-#planet-name, #clock h2 {
+#planet-name, #solar-clock h2, #sidereal-clock h2, #planet-clock h2 {
     font-size: 2rem;
     margin-bottom: 10px;
 }
