@@ -126,20 +126,33 @@ function updateSiderealClock() {
 
 function updatePlanetClock() {
     const now = new Date();
-    const earthRotation = 23.9344; // Період обертання Землі в годинах
-    const planetRotation = currentPlanet.rotation;
+    const earthDayInMs = 23.9344 * 60 * 60 * 1000; // Период обертання Землі в мілісекундах
+    const planetDayInMs = currentPlanet.rotation * 60 * 60 * 1000; // Період обертання планети в мілісекундах
 
-    // Розрахунок часу для обраної планети
-    const planetTimeRatio = earthRotation / planetRotation;
-    const planetTime = (now.getTime() * planetTimeRatio) % (24 * 60 * 60 * 1000);
+    // Розрахунок відносного коефіцієнту часу
+    const timeRatio = earthDayInMs / planetDayInMs;
+    
+    // Отримуємо поточний час в мілісекундах від початку дня
+    const msToday = (now.getHours() * 60 * 60 * 1000) + 
+                     (now.getMinutes() * 60 * 1000) + 
+                     (now.getSeconds() * 1000) + 
+                     now.getMilliseconds();
+    
+    // Обчислюємо планетарний час з меншою ймовірністю переповнення
+    const planetMsToday = msToday * timeRatio;
+    
+    // Обчислюємо години, хвилини та секунди
+    const totalSeconds = Math.floor(planetMsToday / 1000);
+    const hours = Math.floor(totalSeconds / 3600) % 24;
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
-    const planetDate = new Date(planetTime);
+    // Форматуємо час
+    const formattedHours = String(hours).padStart(2, '0');
+    const formattedMinutes = String(minutes).padStart(2, '0');
+    const formattedSeconds = String(seconds).padStart(2, '0');
 
-    const hours = String(planetDate.getUTCHours()).padStart(2, '0');
-    const minutes = String(planetDate.getUTCMinutes()).padStart(2, '0');
-    const seconds = String(planetDate.getUTCSeconds()).padStart(2, '0');
-
-    planetTimeElement.textContent = `Час: ${hours}:${minutes}:${seconds}`;
+    planetTimeElement.textContent = `Час: ${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
 }
 
 // Додаємо обробник події для кнопки "Продовжити"
